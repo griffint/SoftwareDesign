@@ -390,7 +390,7 @@ def gene_finder(dna, threshold):
             dnaSequences.append(allORFList[i])
         else:
             print 'ORF not sufficiently long'
-        print i
+        
     i=0
     aminosList = []
     for i in range (len(dnaSequences)):
