@@ -19,23 +19,26 @@ def build_random_function(min_depth, max_depth):
     must be smaller than max depth    
     """
     # your code goes here
-    
-    #code to generate depth based 
-    #max and min
+   
     
         
-    #List of functions to be used
+    
     base_list = [['x'],['y']]
     if max_depth <= 1:
         return base_list[randint(0,1)]
+        
+    
     first_optional = build_random_function(min_depth-1,max_depth-1)
     second_optional = build_random_function(min_depth-1,max_depth-1)
+    
+    #List of functions to be used
     prod = ['prod',first_optional,second_optional]
     cos_pi = ['cos_pi',first_optional]
     sin_pi = ['sin_pi',first_optional]
     squared = ['^2',first_optional]
     cubed = ['^3',first_optional]
     function_list = [prod,cos_pi,sin_pi,squared,cubed,['x'],['y']]
+    
     if min_depth > 1:
         return function_list[randint(0,4)]
     else:
@@ -71,19 +74,23 @@ def remap_interval(val, input_interval_start, input_interval_end, output_interva
         to the output interval [output_interval_start, output_interval_end].  The mapping
         is an affine one (i.e. output = input*c + b).
     
-        TODO: please fill out the rest of this docstring
+        This function will map any number on a given interval to another interval. The input arguments to the function are 
+        fairly self explanatory.
     """
-    # your code goes here
+    # only one line needed
     return((float(val)-float(input_interval_start))*(float(output_interval_end)-float(output_interval_start))/(float(input_interval_end)-float(input_interval_start))+float(output_interval_start))
     
 def generate_image(width,height):
+    """This function will use build_random_function, evaluate_random_function, and remap_interval to create an image of the 
+    size specified by the user. Width and height are in units of pixels.
+    """
     
-
+    #builds the random functions for each color
     blue_function = build_random_function(randint(5,7),randint(12,15))
     red_function = build_random_function(randint(4,7),randint(8,15))
     green_function = build_random_function(randint(5,6),randint(9,15))
-    print blue_function
-    print red_function
+    
+    #creates the new image
     im = Image.new("RGB",(width,height))
     
     for i in range(width):
@@ -100,6 +107,6 @@ def generate_image(width,height):
     
     
     
-    
+#just an example image
 if __name__=='__main__':
     generate_image(350,350)
